@@ -1,0 +1,6 @@
+[submodule "roq-ansible-services"]
+	path = roq-ansible-services
+	url = https://github.com/roq-trading/roq-ansible-services.git
+[submodule "roq-ansible-monitor"]
+	path = roq-ansible-monitor
+	url = https://github.com/roq-trading/roq-ansible-monitor.git
