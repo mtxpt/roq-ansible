@@ -1,0 +1,129 @@
+---
+roq:
+
+  systemd:
+    user: ubuntu
+    group: ubuntu
+    start: '*-*-* 00:01:00'
+    stop: '*-*-* 23:59:00'
+    restart: 'no'
+
+  common:
+
+    auth_keys:
+       public_key: MKthNtwskvDD25RqppN2DEb9DzqoqtOupWVp_IdJoGc=
+       secret_key: dbRsI7hF2SaoYqsfIPJMyYegcnbVmEoZ7yhoL6HzYHI=
+
+    flags:
+      loop_sleep: 500ns
+      loop_timer_freq: 2500ns
+      event_log_iso_week: false
+      event_log_symlink: true
+      cache_mbp_checksum: false
+      cache_all_reference_data: true
+
+  services:
+
+    deribit:
+      package: roq-deribit
+      logging:
+        verbosity: 0
+      environment: test
+      flags: {}
+      config:
+        symbols:
+          - ^BTC-[0-9]{1,2}[A-Z]{3}[0-9]{2}$  # futures
+          - ^ETH-[0-9]{1,2}[A-Z]{3}[0-9]{2}$  # futures
+          - ^BTC(_USD[A-Z]?)?-PERPETUAL$  # swaps
+          - ^ETH(_USD[A-Z]?)?-PERPETUAL$  # swaps
+          - ^BTC(-USD[A-Z]?)?-DERIBIT-INDEX$  # index
+          - ^ETH(-USD[A-Z]?)?-DERIBIT-INDEX$  # index
+        accounts:
+          A1:
+            login: fWdhn6zS
+            secret: cbELo_50e1tiX9rrnkgR0FQ6sEkDmXBoreBxq0XHL3c
+            symbols: .*
+            master: true
+        users:
+          trader:
+            password: secret
+            accounts: A1
+            symbols: BTC-\\d{2}\\D{3}\\d{2}
+          fix-bridge:
+            password: secret
+            accounts: A1
+            symbols:
+              - ^BTC-[0-9]{1,2}[A-Z]{3}[0-9]{2}$  # futures
+              - ^BTC(_USD[A-Z]?)?-PERPETUAL$  # swaps
+
+    fix-bridge:
+      package: roq-fix-bridge
+      logging:
+        verbosity: 0
+      environment: prod
+      dependencies:
+        - deribit
+      flags:
+        fix_comp_id: "fix-bridge"
+        init_missing_md_entry_type_to_zero: true
+      config:
+        symbols:
+          - ["USD.*", "BTC.*"]
+          - deribit:
+            - "BTC-PERPETUAL"
+            - "ETH-PERPETUAL"
+        users:
+          md1:
+            component: "md1"
+            username: "md1"
+          fix-proxy:
+            component: "fix-proxy"
+            username: "oe1"
+            password: "secret"
+            account: "A1"
+        statistics: {}
+
+    fix-proxy:
+      package: roq-fix-proxy
+      logging:
+        verbosity: 0
+      environment: prod
+      dependencies:
+        - fix-bridge
+      flags:
+        server_target_comp_id: "fix-bridge"
+        server_sender_comp_id: "fix-proxy"
+        server_username: "oe1"
+        server_password: "secret"
+        client_comp_id: "mp-fix-proxy"
+      config:
+        symbols: ["USD.*", "BTC.*"]
+        users:
+          c1:
+            component: "test"
+            username: "c1"
+            password: "p1"
+            accounts: "A1"
+            strategy_id: 1
+          c2:
+            component: "test"
+            username: "c2"
+            password: "p2"
+            accounts: "A2"
+            strategy_id: 2
+          c3:
+            component: "test"
+            username: "c3"
+            password: "p3"
+            accounts: ["A1", "A2"]
+            strategy_id: 3
+
+container:
+  solution: docker
+
+prometheus:
+  scrape_configs:
+    - deribit
+
+nginx:
+  port: 2023

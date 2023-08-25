@@ -1,0 +1,2 @@
+[example]
+aws_host_1 ansible_host="13.112.127.165" ansible_user="ubuntu" become_user="root"
