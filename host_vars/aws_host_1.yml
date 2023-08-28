@@ -49,12 +49,32 @@ roq:
             password: secret
             accounts: A1
             symbols: BTC-\\d{2}\\D{3}\\d{2}
+          sbe-publisher:
+            password: secret
           fix-bridge:
             password: secret
             accounts: A1
             symbols:
               - ^BTC-[0-9]{1,2}[A-Z]{3}[0-9]{2}$  # futures
               - ^BTC(_USD[A-Z]?)?-PERPETUAL$  # swaps
+
+    sbe-publisher:
+      package: roq-sbe-publisher
+      logging:
+        verbosity: 0
+      environment: prod
+      dependencies:
+        - deribit
+      flags:
+        local_interface: 172.31.45.190
+        multicast_address_snapshot: 224.1.1.1
+        multicast_port_snapshot: 5678
+        multicast_address_incremental: 224.1.1.2
+        multicast_port_incremental: 6789
+      config:
+        symbols:
+          - "BTC-PERPETUAL"
+          - "ETH-PERPETUAL"
 
     fix-bridge:
       package: roq-fix-bridge
