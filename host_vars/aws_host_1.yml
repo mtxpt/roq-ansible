@@ -75,8 +75,10 @@ roq:
         multicast_loop: true
       config:
         symbols:
-          - "BTC-PERPETUAL"
-          - "ETH-PERPETUAL"
+          - ["USD.*", "BTC.*"]
+          - deribit:
+              - "BTC-PERPETUAL"
+              - "ETH-PERPETUAL"
 
     fix-bridge:
       package: roq-fix-bridge
@@ -92,8 +94,8 @@ roq:
         symbols:
           - ["USD.*", "BTC.*"]
           - deribit:
-            - "BTC-PERPETUAL"
-            - "ETH-PERPETUAL"
+              - "BTC-PERPETUAL"
+              - "ETH-PERPETUAL"
         users:
           md1:
             component: "md1"
