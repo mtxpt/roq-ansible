@@ -25,6 +25,64 @@ roq:
 
   services:
 
+    binance:
+      package: roq-binance
+      logging:
+        verbosity: 0
+      environment: prod
+      flags: {}
+      config:
+        symbols:
+          - "^BTCUSD[A-Z]?$"
+          - "^ETHUSD[A-Z]?$"
+        accounts:
+          A1:
+            login: "DIyBxTrPYW9KOxMBvOowUfmC6Kbv4DUgyBw3K5su2E2D3VuNSziUHn3yyFjEehd9"
+            symbols: .*
+            master: true
+        users:
+          trader:
+            password: secret
+            accounts: A1
+            symbols: ".*"
+          sbe-publisher:
+            password: secret
+          fix-bridge:
+            password: secret
+            accounts: A1
+            symbols:
+              - "^BTCUSD[A-Z]?$"
+
+    bybit:
+      package: roq-bybit
+      logging:
+        verbosity: 0
+      environment: prod
+      flags: {}
+      config:
+        symbols:
+          - "^BTCUSD$"
+          - "^BTCUSDT$"
+          - "^BTC-.*-[PC]$"
+        accounts:
+          A1:
+            login: "BBFAYIXRZYKVZBFJDQ"
+            symbols: .*
+            master: true
+        users:
+          trader:
+            password: secret
+            accounts: A1
+            symbols: ".*"
+          sbe-publisher:
+            password: secret
+          fix-bridge:
+            password: secret
+            accounts: A1
+            symbols:
+              - "^BTCUSDT$"
+              - "^BTC-.*-[PC]$"
+
     deribit:
       package: roq-deribit
       logging:
@@ -33,30 +91,30 @@ roq:
       flags: {}
       config:
         symbols:
-          - ^BTC-[0-9]{1,2}[A-Z]{3}[0-9]{2}$  # futures
-          - ^ETH-[0-9]{1,2}[A-Z]{3}[0-9]{2}$  # futures
-          - ^BTC(_USD[A-Z]?)?-PERPETUAL$  # swaps
-          - ^ETH(_USD[A-Z]?)?-PERPETUAL$  # swaps
-          - ^BTC(-USD[A-Z]?)?-DERIBIT-INDEX$  # index
-          - ^ETH(-USD[A-Z]?)?-DERIBIT-INDEX$  # index
+          - "^BTC-[0-9]{1,2}[A-Z]{3}[0-9]{2}$"  # futures
+          - "^ETH-[0-9]{1,2}[A-Z]{3}[0-9]{2}$"  # futures
+          - "^BTC(_USD[A-Z]?)?-PERPETUAL$"  # swaps
+          - "^ETH(_USD[A-Z]?)?-PERPETUAL$"  # swaps
+          - "^BTC(-USD[A-Z]?)?-DERIBIT-INDEX$"  # index
+          - "^ETH(-USD[A-Z]?)?-DERIBIT-INDEX$"  # index
         accounts:
           A1:
-            login: UkwIGQ7P
+            login: "UkwIGQ7P"
             symbols: .*
             master: true
         users:
           trader:
             password: secret
             accounts: A1
-            symbols: BTC-\\d{2}\\D{3}\\d{2}
+            symbols: "BTC-PERPETUAL"
           sbe-publisher:
             password: secret
           fix-bridge:
             password: secret
             accounts: A1
             symbols:
-              - ^BTC-[0-9]{1,2}[A-Z]{3}[0-9]{2}$  # futures
-              - ^BTC(_USD[A-Z]?)?-PERPETUAL$  # swaps
+              - "^BTC-[0-9]{1,2}[A-Z]{3}[0-9]{2}$"  # futures
+              - "^BTC(_USD[A-Z]?)?-PERPETUAL$"  # swaps
 
     sbe-publisher:
       package: roq-sbe-publisher
@@ -147,6 +205,8 @@ container:
 
 prometheus:
   scrape_configs:
+    - binance
+    - bybit
     - deribit
 
 nginx:
