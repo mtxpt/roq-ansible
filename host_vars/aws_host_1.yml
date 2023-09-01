@@ -21,6 +21,7 @@ roq:
       event_log_symlink: true
       cache_mbp_checksum: false
       cache_all_reference_data: true
+      secrets_file: "/home/ubuntu/.secret/roq.toml"
 
   services:
 
@@ -28,7 +29,7 @@ roq:
       package: roq-deribit
       logging:
         verbosity: 0
-      environment: test
+      environment: prod
       flags: {}
       config:
         symbols:
@@ -40,8 +41,7 @@ roq:
           - ^ETH(-USD[A-Z]?)?-DERIBIT-INDEX$  # index
         accounts:
           A1:
-            login: fWdhn6zS
-            secret: cbELo_50e1tiX9rrnkgR0FQ6sEkDmXBoreBxq0XHL3c
+            login: UkwIGQ7P
             symbols: .*
             master: true
         users:
