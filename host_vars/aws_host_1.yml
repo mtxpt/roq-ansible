@@ -173,6 +173,7 @@ roq:
       dependencies:
         - fix-bridge
       flags:
+        client_listen_address: "tcp://localhost:3333"
         server_target_comp_id: "fix-bridge"
         server_sender_comp_id: "fix-proxy"
         server_username: "oe1"
