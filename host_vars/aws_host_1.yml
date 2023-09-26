@@ -22,6 +22,7 @@ roq:
       cache_mbp_checksum: false
       cache_all_reference_data: true
       secrets_file: "/home/ubuntu/.secret/roq.toml"
+      enable_risk: true
 
   services:
 
