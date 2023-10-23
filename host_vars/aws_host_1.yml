@@ -152,6 +152,7 @@ roq:
       flags:
         fix_comp_id: "fix-bridge"
         init_missing_md_entry_type_to_zero: true
+        oms_route_by_strategy: true
       config:
         symbols:
           - ["USD.*", "BTC.*"]
