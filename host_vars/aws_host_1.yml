@@ -167,7 +167,6 @@ roq:
             component: "fix-proxy"
             username: "oe1"
             password: "secret"
-            account: "A1"
         statistics: {}
 
     fix-proxy:
