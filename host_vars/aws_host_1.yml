@@ -166,6 +166,7 @@ roq:
         multicast_port_incremental: 6789
         multicast_ttl: 4
         multicast_loop: true
+        max_depth: 5
       config:
         symbols:
           - ["USD.*", "BTC.*"]
