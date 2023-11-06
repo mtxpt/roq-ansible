@@ -35,7 +35,6 @@ roq:
       flags:
         download_trades_lookback: 24h
         rest_cancel_on_disconnect: false
-        ws_api: true
       config:
         symbols:
           - "^BTCUSD[A-Z]?$"
