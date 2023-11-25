@@ -213,6 +213,7 @@ roq:
       dependencies:
         - fix-bridge
       flags:
+        auth_uri: "ws://localhost:1234"
         client_listen_address: "tcp://localhost:3333"
         server_target_comp_id: "fix-bridge"
         server_sender_comp_id: "fix-proxy"
@@ -241,6 +242,35 @@ roq:
             accounts: ["A1", "A2"]
             strategy_id: 3
 
+    fix-auth:
+      package: roq-fix-auth
+      logging:
+        verbosity: 0
+      environment: prod
+      dependencies: {}
+      flags:
+        client_listen_address: "ws://localhost:1234"
+      config:
+        users:
+          c1:
+            component: "test"
+            username: "c1"
+            password: "p1"
+            accounts: "A1"
+            strategy_id: 1
+          c2:
+            component: "test"
+            username: "c2"
+            password: "p2"
+            accounts: "A2"
+            strategy_id: 2
+          c3:
+            component: "test"
+            username: "c3"
+            password: "p3"
+            accounts: ["A1", "A2"]
+            strategy_id: 3
+
 container:
   solution: docker
 
@@ -249,6 +279,7 @@ prometheus:
     - binance
     - bybit
     - deribit
+    - okx
 
 nginx:
   port: 2023
