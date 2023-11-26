@@ -249,7 +249,8 @@ roq:
       environment: prod
       dependencies: {}
       flags:
-        client_listen_address: "ws://localhost:1234"
+        client_listen_address: 1234
+        # client_listen_address: "ws://localhost:1234"
       config:
         users:
           c1:
