@@ -163,7 +163,7 @@ roq:
       dependencies:
         - deribit
       flags:
-        local_interface: 172.31.45.190
+        local_interface: 172.31.45.190  # note! ip route get 8.8.8.8
         multicast_address_snapshot: 224.1.1.1
         multicast_port_snapshot: 5678
         multicast_address_incremental: 224.1.1.2
@@ -229,18 +229,6 @@ roq:
             password: "p1"
             accounts: "A1"
             strategy_id: 1
-          c2:
-            component: "test"
-            username: "c2"
-            password: "p2"
-            accounts: "A2"
-            strategy_id: 2
-          c3:
-            component: "test"
-            username: "c3"
-            password: "p3"
-            accounts: ["A1", "A2"]
-            strategy_id: 3
 
     fix-auth:
       package: roq-fix-auth
@@ -250,7 +238,6 @@ roq:
       dependencies: {}
       flags:
         client_listen_address: 1234
-        # client_listen_address: "ws://localhost:1234"
       config:
         users:
           c1:
@@ -271,6 +258,22 @@ roq:
             password: "p3"
             accounts: ["A1", "A2"]
             strategy_id: 3
+
+    cache-proxy-1:
+      package: roq-cache-proxy
+      logging:
+        verbosity: 0
+      environment: prod
+      dependencies: {}
+      flags:
+        multicast_port: 4567
+        multicast_address: 224.1.1.3
+        local_interface: 172.31.45.190  # note! ip route get 8.8.8.8
+        database_uri: "http://localhost:8123"
+        database_name: "roq_cache"
+        cache_dir: "/var/lib/roq/cache-proxy-1"
+        cache_datasync: true
+        cache_datasync_before_respond: false
 
 container:
   solution: docker
