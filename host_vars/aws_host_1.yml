@@ -14,16 +14,18 @@ roq:
        public_key: MKthNtwskvDD25RqppN2DEb9DzqoqtOupWVp_IdJoGc=
        secret_key: dbRsI7hF2SaoYqsfIPJMyYegcnbVmEoZ7yhoL6HzYHI=
 
-    flags:
+    flags:  # note! gateways
+      secrets_file: "/home/ubuntu/.secret/roq.toml"
       loop_sleep: 500ns
       loop_timer_freq: 2500ns
       event_log_iso_week: false
       event_log_symlink: true
       cache_mbp_checksum: false
       cache_all_reference_data: true
-      secrets_file: "/home/ubuntu/.secret/roq.toml"
-      enable_risk: true
+      cache_database_uri: "http://localhost:8123"
+      cache_database_name: "roq_cache"
       oms_cache: true
+      enable_risk: true
 
   services:
 
