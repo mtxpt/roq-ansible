@@ -232,8 +232,8 @@ roq:
             accounts: "A1"
             strategy_id: 1
 
-    fix-auth:
-      package: roq-fix-auth
+    fix-config:
+      package: roq-fix-config
       logging:
         verbosity: 0
       environment: prod
