@@ -180,6 +180,19 @@ roq:
               - "BTC-PERPETUAL"
               - "ETH-PERPETUAL"
 
+    drop-copy:
+      package: roq-drop-copy
+      logging:
+        verbosity: 0
+      environment: prod
+      dependencies:
+        - deribit
+      flags:
+        database_uri: "http://localhost:8123"
+        database_name: "roq_drop_copy"
+      config:
+        symbols: ".*"
+
     fix-bridge:
       package: roq-fix-bridge
       logging:
