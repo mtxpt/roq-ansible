@@ -116,6 +116,9 @@ roq:
             password: secret
             accounts: A1
             symbols: "BTC-PERPETUAL"
+          drop-copy:
+            password: secret
+            drop_copy: true
           sbe-publisher:
             password: secret
           fix-bridge:
