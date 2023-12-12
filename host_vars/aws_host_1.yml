@@ -35,7 +35,8 @@ roq:
         verbosity: 0
       environment: prod
       flags:
-        download_trades_lookback: 24h
+        download_trades_lookback: 5m
+        download_trades_lookback_on_restart: 3h
         rest_cancel_on_disconnect: false
       config:
         symbols:
@@ -65,7 +66,8 @@ roq:
         verbosity: 0
       environment: prod
       flags:
-        download_trades_lookback: 24h
+        download_trades_lookback: 5m
+        download_trades_lookback_on_restart: 3h
       config:
         symbols:
           - "^BTCUSD$"
@@ -96,7 +98,8 @@ roq:
         verbosity: 0
       environment: prod
       flags:
-        download_trades_lookback: 24h
+        download_trades_lookback: 5m
+        download_trades_lookback_on_restart: 3h
         fix_cancel_on_disconnect: false
       config:
         symbols:
@@ -134,7 +137,8 @@ roq:
         verbosity: 0
       environment: prod
       flags:
-        download_trades_lookback: 24h
+        download_trades_lookback: 5m
+        download_trades_lookback_on_restart: 3h
       config:
         symbols:
           - "^BTC-USD[A-Z]$"  # spot
