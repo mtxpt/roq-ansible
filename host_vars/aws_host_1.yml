@@ -281,8 +281,8 @@ roq:
             accounts: ["A1", "A2"]
             strategy_id: 3
 
-    cache-proxy-1:
-      package: roq-cache-proxy
+    journal-1:
+      package: roq-journal
       logging:
         verbosity: 0
       environment: prod
@@ -293,7 +293,7 @@ roq:
         local_interface: 172.31.45.190  # note! ip route get 8.8.8.8
         database_uri: "http://localhost:8123"
         database_name: "roq_cache"
-        cache_dir: "/var/lib/roq/cache-proxy-1"
+        cache_dir: "/var/lib/roq/journal-1"
         cache_datasync: true
         cache_datasync_before_respond: false
 
