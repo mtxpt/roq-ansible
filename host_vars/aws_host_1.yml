@@ -23,7 +23,7 @@ roq:
       cache_mbp_checksum: false
       cache_all_reference_data: true
       cache_database_uri: "http://localhost:8123"
-      cache_database_name: "roq_cache"
+      cache_database_name: "journal"
       oms_cache: true
       enable_risk: true
 
@@ -196,7 +196,7 @@ roq:
         - deribit
       flags:
         database_uri: "http://localhost:8123"
-        database_name: "roq_drop_copy"
+        database_name: "drop_copy"
       config:
         symbols: ".*"
 
@@ -292,7 +292,7 @@ roq:
         multicast_address: 224.1.1.3
         local_interface: 172.31.45.190  # note! ip route get 8.8.8.8
         database_uri: "http://localhost:8123"
-        database_name: "roq_cache"
+        database_name: "journal"
         cache_dir: "/var/lib/roq/journal-1"
         cache_datasync: true
         cache_datasync_before_respond: false
