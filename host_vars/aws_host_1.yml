@@ -23,7 +23,7 @@ roq:
       cache_mbp_checksum: false
       cache_all_reference_data: true
       cache_database_uri: "http://localhost:8123"
-      cache_database_name: "journal"
+      cache_database_name: "roq"
       oms_cache: true
       enable_risk: true
 
@@ -119,7 +119,7 @@ roq:
             password: secret
             accounts: A1
             symbols: "BTC-PERPETUAL"
-          drop-copy:
+          position-manager:
             password: secret
             drop_copy: true
           sbe-publisher:
@@ -187,8 +187,8 @@ roq:
               - "BTC-PERPETUAL"
               - "ETH-PERPETUAL"
 
-    drop-copy:
-      package: roq-drop-copy
+    position-manager:
+      package: roq-position-manager
       logging:
         verbosity: 0
       environment: prod
@@ -196,7 +196,7 @@ roq:
         - deribit
       flags:
         database_uri: "http://localhost:8123"
-        database_name: "drop_copy"
+        database_name: "roq"
       config:
         symbols: ".*"
 
@@ -292,7 +292,7 @@ roq:
         multicast_address: 224.1.1.3
         local_interface: 172.31.45.190  # note! ip route get 8.8.8.8
         database_uri: "http://localhost:8123"
-        database_name: "journal"
+        database_name: "roq"
         cache_dir: "/var/lib/roq/journal-1"
         cache_datasync: true
         cache_datasync_before_respond: false
