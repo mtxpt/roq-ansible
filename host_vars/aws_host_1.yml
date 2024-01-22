@@ -236,12 +236,13 @@ roq:
         - fix-bridge
       flags:
         auth_uri: "ws://localhost:1234"
-        client_listen_address: "tcp://localhost:3333"
         server_target_comp_id: "fix-bridge"
         server_sender_comp_id: "fix-proxy"
         server_username: "oe1"
         server_password: "secret"
+        client_listen_address: "tcp://localhost:3333"
         client_comp_id: "mp-fix-proxy"
+        client_auth_method: "hmac_sha256_ts"
       config:
         symbols: ["USD.*", "BTC.*"]
         users:
