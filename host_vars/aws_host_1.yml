@@ -146,8 +146,10 @@ roq:
           - "^PERP-USD[A-Z](-SWAP)?$"  # swaps
         accounts:
           A1:
-            login: "9e7751fa-ad03-4296-a8eb-4ff64aca7214"
-            password: "B#gck5RS6^S2iHpk"
+            # login: "9e7751fa-ad03-4296-a8eb-4ff64aca7214"
+            # password: "B#gck5RS6^S2iHpk"
+            login: "012be312-e194-4a16-88cd-ba94ba06eb8b"
+            password: "40F43868AA817525FB3110442B11A46F"
             symbols: .*
             master: true
         users:
